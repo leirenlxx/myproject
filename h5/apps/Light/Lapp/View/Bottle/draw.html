@@ -1,0 +1,771 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link href="{$Think.config.static}/lib/reset/normalize.css" rel="stylesheet" type="text/css" >
+	    <link href="{$Think.config.static}/lib/reset/default.css" rel="stylesheet" type="text/css" >
+	    <link href="{$Think.config.static}/lib/pxloader/pxloader.css" rel="stylesheet" type="text/css" >
+	    <link href='{$Think.config.static}/lapp/express_bottle/css/draw.css?v=201607201735' rel='stylesheet' type='text/css'>
+	    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	    <title>编辑自己专属的【表达瓶】</title>
+	</head>
+	<body>
+		<div class="g-load" id="pre-load">
+	        <div class="m-load-inner">
+	            <div class="u-water" id="pre-water">
+	                <div class="u-water-wave"></div>
+	            </div>
+	            <div class="u-bottle"></div>
+	            <p class="u-txt" id="pre-txt"></p>
+	        </div>
+	    </div>
+		<div class="g-draw">
+			<div class="m-draw-map">
+				<img class="m-draw-back" src="{$Think.config.static}/lapp/express_bottle/img/back-bg-1.png" alt="">
+				<img class="m-draw-bottle" src="{$Think.config.static}/lapp/express_bottle/img/bottle.png" alt="">
+				<div class="m-draw-bottleback"></div>
+				<textarea class="m-draw-text" id="draw-text" maxlength="30" placeholder="点击此处输入内容"></textarea>
+				<div class="m-draw-sign">
+					<p class="m-draw-nickname"></p>
+					<span>发表于</span>
+					<textarea class="m-draw-address" maxlength="8"></textarea>
+					<p class="m-draw-date"></p>
+				</div>
+			</div>
+			<!-- 编辑区域 -->
+			<div class="m-draw-choose">
+				<div class="m-edit-text">
+					<div class="m-choose-words">
+						<p>经典<br>语录</p>
+						<hr>
+						<ul class="m-choose-words-ul">
+							<li> 手机里的人已经坐在对面了，你怎么还在……</li>
+							<li> 都说远方很美，但哪一个远方美得过眼前人。</li>
+							<li> 陪你去走最远的路，是我最深的套路。</li>
+							<li> 我能想到最浪漫的事，就是我这几年，都……</li>
+							<li> 就算已经晕了，眼里总有一个人是清晰的。</li>
+							<li> 不要到处宣扬你的内心，因为不止你一人……</li>
+							<li> 我们未必出类拔萃，但一定与众不同。</li>
+							<li> 有多少杯空，就有多少心空。</li>
+							<li> 我就想没羞没臊的对你好，看你没心没肺的笑。</li>
+							<li> 我在等一个，也许永远也不会来的人。</li>
+							<li> 比你懂得多的人未必比你帅。</li>
+							<li> 我们总是对着过去侃侃而谈，对于现在却……</li>
+							<li> 真正的赞美写在眼睛里，而不是挂在嘴边。</li>
+							<li> 不要怕，我们遇到的多数人不过是在假装……</li>
+							<li> 只要在一起过，谁都无法从TA的世界里真……</li>
+							<li> 如果不能随心所欲的哭哭笑笑，我们用什……</li>
+							<li> 有些人你明明不愿意忘记，但TA却越走越远。</li>
+							<li> 以前我们做什么都不考虑后果，现在我们……</li>
+							<li> 如果道理都是错的，但你这个人是对的，……</li>
+							<li> 把一部分过去忘掉，现在会更开心。</li>
+							<li> 报复平庸最好的方式就是保持一颗躁动的心。</li>
+							<li> 不说错话，不做错事，青春白走一回。</li>
+							<li> 眼睛越蒙眬，心里越清晰。</li>
+							<li> 约了有多久？我在等你主动，你在等我有空。</li>
+							<li> 终于说好老地方见，却已找不到那家店。</li>
+							<li> 肚子胖了，理想却瘦了。</li>
+							<li> 话说四海之内皆兄弟，然而四公里之内却……</li>
+							<li> 生活不止向往远方，还有这个老地方。</li>
+							<li> 哪有什么突然想起，其实是一直藏在心里。</li>
+							<li> 我在杯子里看见你的容颜，却已是匆匆那年。</li>
+							<li> 年轻要活得痛快，年长要活得自在。</li>
+							<li> 我们那些共同的记忆，是最好的下酒菜。</li>
+							<li> 有的事情现在不做，就一辈子也不会做了。</li>
+							<li> 不成熟的男人装深沉，成熟的男人装幼稚。</li>
+							<li> 朋友，不能只呆在朋友圈。</li>
+							<li> 世上最遥远的距离，是碰了杯，却碰不到心。</li>
+							<li> 没有过不去的事情，只有过不去的心情。</li>
+							<li> 我们总想着迎合他人，却忘了最该讨好的……</li>
+							<li> 最想说的话在眼睛里，草稿箱里，梦里，……</li>
+							<li> 愿十年后我还给你倒酒，愿十年后我们还……</li>
+							<li> 不想做一个有多牛逼的人，只想做一个不……</li>
+							<li> 走过一些弯路，也好过原地踏步。</li>
+							<li> 懂的越多，能懂你的就越少。</li>
+							<li> 我们总是发现以前的自己有点傻。</li>
+							<li> 跟重要的人才会谈人生。</li>
+							<li> 孤独不在山上而在街上，不在房间里而在……</li>
+							<li> 开心告诉别人，难过找我倾诉。</li>
+							<li> 早知今日思念如潮涌般袭来，何必当初我……</li>
+						</ul>
+					</div>
+					<ul class="m-choose-edit">
+						<li class="m-choose-color" data="0">
+							<div></div><p>字色</p>
+						</li>
+		                <li class="m-choose-size">
+		                	<div></div><p>字号</p>
+		                </li>
+		                <li class="m-choose-align">
+		                	<div></div><p>对齐</p>
+		                </li>
+		                <li class="m-choose-shadow">
+		                	<div></div><p>投影</p>
+		                </li>
+		                <li class="m-choose-designColor" data="0">
+							<div></div><p>字色</p>
+						</li>
+					</ul>
+				</div>
+				<!-- 选择背景 -->
+				<ul class="m-choose-back">
+					<li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-1.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-2.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-3.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-4.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-5.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-6.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-7.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/back-bg-8.png">
+	                </li>
+	                <li class="u-back-square"></li>
+				</ul>
+				<!-- 选择瓶身 -->
+				<ul class="m-choose-bottleback">
+					<li class="m-photo-li">
+	                    <img class="u-photo" src="{$Think.config.static}/lapp/express_bottle/img/photo.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-1.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-2.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-3.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-4.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-5.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-6.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-7.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-8.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-9.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-10.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-11.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-12.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-13.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-14.png">
+	                </li>
+	                <li>
+	                    <img src="{$Think.config.static}/lapp/express_bottle/img/bottle-bg-15.png">
+	                </li>
+	                <li class="u-bottle-square"></li>
+				</ul>
+			</div>
+			<!-- 选择模块 -->
+			<div class="m-draw-tool">
+				<ul class="m-draw-tool-wraper">
+					<li class="u-tool-text"><div></div><p>文字</p></li>
+					<li class="u-tool-back"><div></div><p>场景</p></li>
+					<li class="u-tool-bottleback"><div></div><p>背景</p></li>
+					<li class="u-tool-save"><div></div><p>完成</p></li>
+				</div>
+			</div>
+		</div>
+		<div class="g-cut">
+            <div class="container">
+                <article class="htmleaf-container">
+                    <div class="m-clipArea" id="clipArea"></div>
+                    <div id="view"></div>
+                    <div class="m-photo-tool">
+                        <div class="m-fileButton">
+                            选择文件
+                            <input type="file" class="u-file" id="file">
+                        </div>
+                        <button class="u-clipBtn" id="clipBtn">截取</button>
+                        <div class="u-cancel">取消</div>
+                        <div class="u-sure" id="photoSure">确定</div>
+                    </div>
+                </article>
+            </div>
+		</div>
+		<div class="g-new">
+			<p class="u-new-doing">语录发布中，请耐心等待……</p>
+			<div class="m-new">
+				<img class="u-new-img">
+				<p class="u-new-text">长按图片保存到相册<br>你的语录已经成功发布，请拿去先装为快</p>
+			</div>
+		</div>
+		<div class="g-hide">
+			<canvas class="u-hide-back" id="hide-back" width="750" height="809"></canvas>
+			<canvas class="u-hide-bottle" id="hide-bottle" width="353" height="679"></canvas>
+			<canvas class="u-hide-bottleback" id="hide-bottleback" width="324" height="381"></canvas>
+		</div>
+		<div class="g-wrap-prom">您输入的文字请在每一行使用手动换行，否则可能和预期的不同哦^_^</div>
+		<div class="g-arrow">
+			<img src="{$Think.config.static}/lapp/express_bottle/img/arrow.png">
+			<p>点击这里可以输入地点呢^_^</p>
+		</div>
+		<div class="g-load-animation">
+	    	<div class="u-l">l</div>
+	    	<div class="u-o">o</div>
+	    	<div class="u-a">a</div>
+	    	<div class="u-d">d</div>
+	    	<div class="u-i">i</div>
+	    	<div class="u-n">n</div>
+	    	<div class="u-g">g</div>
+	    	<div class="u-dot1">.</div>
+	    	<div class="u-dot2">.</div>
+	    	<div class="u-dot3">.</div>
+	    </div>
+	    <div class="g-hideDiv">
+	    	<span class="m-hideSpan" id="hideSpan"></span>
+	    </div>
+		<script src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+	    <script src="{$Think.config.static}/lib/pxloader/pxloader-all.js"></script>
+	    <script src="{$Think.config.static}/lib/iscroll-zoom/iscroll-zoom.js"></script>
+	    <script src="{$Think.config.static}/lib/hammer/hammer.js"></script>
+	    <script src="{$Think.config.static}/lib/jquery.photoClip/jquery.photoClip.min.js"></script>
+	    
+	    <script src="{$Think.config.static}/lapp/express_bottle/js/draw.js?v=201607201735"></script>
+	    <script>
+		 (function (doc, win) {
+		        var docEl = doc.documentElement,
+		        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		        recalc = function () {
+		            var clientWidth = docEl.clientWidth;
+		            if (!clientWidth) {return};
+		            docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+		        };
+		        if (!doc.addEventListener) {return};
+		        win.addEventListener(resizeEvt, recalc, false);
+		        doc.addEventListener('DOMContentLoaded', recalc, false);
+		    })(document, window);
+			var design=['手机里的人已经坐在对面了，你怎么还在盯着手机看？',
+				'都说远方很美，但哪一个远方美得过眼前人。',
+				'陪你去走最远的路，是我最深的套路。',
+				'我能想到最浪漫的事，就是我这几年，都与你有关。',
+				'就算已经晕了，眼里总有一个人是清晰的。',
+				'不要到处宣扬你的内心，因为不止你一人有故事。',
+				'我们未必出类拔萃，但一定与众不同。',
+				'有多少杯空，就有多少心空。',
+				'我就想没羞没臊的对你好，看你没心没肺的笑。',
+				'我在等一个，也许永远也不会来的人。',
+				'比你懂得多的人未必比你帅。',
+				'我们总是对着过去侃侃而谈，对于现在却无话可说。',
+				'真正的赞美写在眼睛里，而不是挂在嘴边。',
+				'不要怕，我们遇到的多数人不过是在假装自己很厉害而已。',
+				'只要在一起过，谁都无法从TA的世界里真正消失。',
+				'如果不能随心所欲的哭哭笑笑，我们用什么方式证明年轻？',
+				'有些人你明明不愿意忘记，但TA却越走越远。',
+				'以前我们做什么都不考虑后果，现在我们老在考虑做什么。',
+				'如果道理都是错的，但你这个人是对的，那就算对吧。',
+				'把一部分过去忘掉，现在会更开心。',
+				'报复平庸最好的方式就是保持一颗躁动的心。',
+				'不说错话，不做错事，青春白走一回	。',
+				'眼睛越蒙眬，心里越清晰。',
+				'约了有多久？我在等你主动，你在等我有空。',
+				'终于说好老地方见，却已找不到那家店。',
+				'肚子胖了，理想却瘦了。',
+				'话说四海之内皆兄弟，然而四公里之内却不联系。',
+				'生活不止向往远方，还有这个老地方。',
+				'哪有什么突然想起，其实是一直藏在心里。',
+				'我在杯子里看见你的容颜，却已是匆匆那年。',
+				'年轻要活得痛快，年长要活得自在。',
+				'我们那些共同的记忆，是最好的下酒菜。',
+				'有的事情现在不做，就一辈子也不会做了。',
+				'不成熟的男人装深沉，成熟的男人装幼稚。',
+				'朋友，不能只呆在朋友圈。',
+				'世上最遥远的距离，是碰了杯，却碰不到心。',
+				'没有过不去的事情，只有过不去的心情。',
+				'我们总想着迎合他人，却忘了最该讨好的是自己。',
+				'最想说的话在眼睛里，草稿箱里，梦里，和酒里。',
+				'愿十年后我还给你倒酒，愿十年后我们还是老友。',
+				'不想做一个有多牛逼的人，只想做一个不可替代的人。',
+				'走过一些弯路，也好过原地踏步。',
+				'懂的越多，能懂你的就越少。',
+				'我们总是发现以前的自己有点傻。',
+				'跟重要的人才会谈人生。',
+				'孤独不在山上而在街上，不在房间里而在人群里。',
+				'开心告诉别人，难过找我倾诉。',
+				'早知今日思念如潮涌般袭来，何必当初我假装潇洒离开。'],
+		    	baseUrl = '{$Think.config.static}/lapp/express_bottle/',
+	            $progress = $('#pre-txt'), 
+	            $progressBar = $('#pre-water'), 
+	            $progressVal = 0, 
+	            loader = new PxLoader(),	
+	            myDate = new Date(),    
+           		w= document.documentElement.clientWidth|| document.body.clientWidth,
+			   	h= document.documentElement.clientHeight|| document.body.clientHeight,
+			    url='{$Think.config.static}/lapp/express_bottle/',
+			    h5url='http://h5.ijovo.com/lxx/lxx',
+			    backCanvas=document.getElementById('hide-back'),
+			    backContext=backCanvas.getContext('2d'),
+			    backImg=new Image(),
+			    bottleCanvas=document.getElementById('hide-bottle'),
+			    bottleContext=bottleCanvas.getContext('2d'),
+			    bottleImg=new Image(),
+			    bottleBackCanvas=document.getElementById('hide-bottleback'),
+			    bottleBackContext=bottleBackCanvas.getContext('2d'),
+			    bottleBackImg=new Image(),
+			    //上传的小图
+			    base64Little='',
+			    //toDataURL生成的大图
+			    base64Big='',
+			    //选择的背景图
+			    uploadimg='',
+			    back=url+'img/back-bg-1.png',
+			    //选择的瓶身图
+			    chooseimg=url+'img/bottle-bg-1.png',
+			    //输入的文字
+			    content='',
+			    colorArr=['deepBlue','blue','white'],
+			    //选择的颜色
+			    color=colorArr[0],
+			    designColor=colorArr[0],
+			    fontSizeArr=[0.9,0.7,1.1],
+			    fontSize=fontSizeArr[0],
+			    textAlignArr=['left','center','right'],
+				textAlign=textAlignArr[0],
+				hasShadow=false,
+			    lineArr,
+			    baseImage,
+			    textX=0,
+			    textY=0,
+			    signX=0,
+			    signY=0,
+			    hasclick=false;
+		    $(function() {
+		        //防止先出现水波再出现瓶子的问题，所以先判断瓶子是否加载完成，等瓶子加载完成后再出现水波
+		        $('<img/>').attr('src', '{$Think.config.static}/lapp/express_bottle/img/loading.png').load(function() {
+			        $(this).remove(); // prevent memory leaks as @benweet suggested
+			        $('.g-load-animation').remove();
+			        $('.m-draw-tool-wraper li div').css('background-image','url('+url+'img/icon.png)');
+			        $('.m-choose-edit li div').css('background-image','url('+url+'img/icon.png)');
+			        $('.m-draw-bottleback').css('background-image','url('+url+'img/bottle-bg-1.png)');
+			        backImg.crossOrigin = "*";
+				    bottleImg.crossOrigin = "*";
+				    bottleBackImg.crossOrigin = "*"; 
+				    backImg.src=url+'img/back-bg-1.png';
+				    bottleImg.src=url+'img/bottle.png';
+				    bottleBackImg.src=url+'img/bottle-bg-1.png';
+			    	setPreload();
+					setCut();
+				});
+		    });
+
+
+
+		    //设置预加载
+		    function setPreload(){
+		    	$('.g-load .u-bottle, .g-load .u-water-wave').css('background-image', 'url({$Think.config.static}/lapp/express_bottle/img/loading.png)');
+	           	$('#pre-txt').text('0%');
+		       	var attachQueue = {
+		            "image": [
+		            	"bottle.png",
+		                "back-bg-1.png","back-bg-2.png","back-bg-3.png","back-bg-4.png","back-bg-5.png","back-bg-6.png","back-bg-7.png","back-bg-8.png",
+		                "bottle-bg-1.png","bottle-bg-2.png","bottle-bg-3.png","bottle-bg-4.png","bottle-bg-5.png","bottle-bg-6.png","bottle-bg-7.png","bottle-bg-8.png",
+		                "bottle-bg-9.png","bottle-bg-10.png","bottle-bg-11.png","bottle-bg-12.png","bottle-bg-13.png","bottle-bg-14.png","bottle-bg-15.png"
+		            ],
+		            "media": [
+		            ]
+		        };
+		        var addAttachForTag = function(tag) {
+		            var obj = attachQueue["image"];
+		            switch (tag) {
+		                case "image":
+		                    for (var key in obj) {
+		                        var imageUrl = baseUrl + "img/";
+		                        pxImage = new PxLoaderImage(imageUrl + obj[key]);
+		                        pxImage.imageNumber = key + 1;
+		                        loader.add(pxImage);
+		                    }
+		                    break;
+		                case "media":
+		                    break;
+		            }
+		        }
+		        addAttachForTag('image');
+		        loader.addProgressListener(function(e) {
+		            $progressVal = Math.round(e.completedCount / e.totalCount * 100);
+		            $progressBar.height($progressVal * 0.58 + "%");
+		            $progress.text($progressVal + "%");
+		        });
+		        loader.addCompletionListener(function(e) {
+		            $progress.text("加载完成");
+	            	setTimeout(function(){
+		            	$("#pre-load").remove();
+		            	$('#draw').show();
+		            	$('.g-arrow').fadeIn(1000);
+		            	setTimeout(function(){
+		            		$('.g-arrow').fadeOut(500);
+		            	}, 5000);
+		            	//加载结束后执行的函数
+		            	chooseImage();
+		            	transCutImg();
+		            	toSave();
+			        }, 800);
+		        });
+		        loader.start(['image', 'media']);
+		    }
+		    //选择图片
+			function chooseImage(){
+			     //选择场景图片
+			    var lastChooseBack='http://static.ijovo.com/lapp/express_bottle/img/back-bg-1.png';
+			    $('.m-choose-back li').click(function(){
+			        $('.u-back-square').css({'top':$(this).css('top'),'left':$(this).css('left')});
+			        var newSrc=$(this).find('img').attr('src');
+			        if(newSrc){
+			        	lastChooseBack=newSrc;
+			        }
+			        else {
+			        	newSrc=lastChooseBack;
+			        }
+			        $('.m-draw-back').attr('src',newSrc);
+			        //canvas赋值
+			        backImg.src=newSrc;
+			        back=newSrc;
+			    });
+			    //选择瓶身图片
+			    var lastChooseBottleBack='http://static.ijovo.com/lapp/express_bottle/img/bottle-bg-1.png';
+			    $('.m-choose-bottleback li:not(:first)').click(function(){
+			        $('.u-bottle-square').css({'top':$(this).css('top'),'left':$(this).css('left')});
+			        var newSrc=$(this).find('img').attr('src');
+			        if(newSrc){
+			        	lastChooseBottleBack=newSrc;
+			        }
+			        else {
+			        	newSrc=lastChooseBottleBack;
+			        }
+			        $('.m-draw-bottleback').attr('style','background-image:url("'+newSrc+'");');
+			        //canvas赋值
+			        bottleBackImg.src=newSrc;
+			        chooseimg=newSrc;
+			    });
+			}
+			//配置裁图
+			function setCut(){
+				//配置裁图
+			    $('#clipArea').photoClip({
+			        width: 201,
+			        height: 201,
+			        file: "#file",
+			        view: "#view",
+			        ok: "#clipBtn",
+			        loadStart: function() {
+			            //console.log("照片读取中");
+			        },
+			        loadComplete: function() {
+			            //console.log("照片读取完成");
+			        },
+			        clipFinish: function(dataURL) {
+			            //console.log(dataURL);
+			        }
+			    });
+			}
+			//把裁的图（base64）传给服务器，服务器返回jpg格式图片地址
+			function transCutImg(){
+			    //点击确定
+			    $('#photoSure').click(function(){
+			        $('.g-cut').hide();
+			        $('.g-cut').removeClass('u-show-model');
+			        var src=$('#view').css('background-image');
+			        if(src=='none'){
+			            alert('请截取图片');         
+			        }
+			        else{
+			        	$('.m-draw-bottleback').append('<div class="g-load-animation"><div>你导入了一张伟大的照片，</div><div>请再等三秒</div><div><div class="u-l">.&nbsp</div><div class="u-o">.&nbsp</div><div class="u-a">.&nbsp</div></div></div>');
+			        	$('.g-load-animation').show();
+			        	$('.g-load-animation').css({'background':'#000','opacity':'0.5','height':'2.8rem','line-height':'1.1rem','font-size':'0.6rem','padding':'0.3rem 0'});
+			             //chrome背景图片的格式是 url("data……")
+			            if(src.indexOf('"')>=0){
+			                base64Little=src.split('"')[1];
+			            }
+			            //手机浏览器背景图片的格式是 url(data……)，没有双引号
+			            else if(src.indexOf('(')>=0){
+			                base64Little=src.substring(src.indexOf('(')+1,src.indexOf(')'));
+			            }
+			            var imageCanvas=document.createElement('canvas'),imageCanvasContext=imageCanvas.getContext('2d'),faceimage=new Image();
+				    	imageCanvas.width=w*0.8;
+				    	imageCanvas.height=w*0.8;
+				    	faceimage.src=base64Little;
+				    	imageCanvasContext.drawImage(faceimage,0,0,faceimage.width,faceimage.height,0,0,imageCanvas.width,imageCanvas.height);
+				    	// document.body.appendChild(imageCanvas);
+				    	// $('.m-draw-back').attr('src',imageCanvas.toDataURL('image/png'));
+			            $.ajax({	
+			                type:'post',
+			                url:h5url+'/cutImg?uid='+localStorage.getItem('uid'),
+			                data:{cutimg:imageCanvas.toDataURL('image/png')},
+			                datatype:'json',
+			                success:function(data){
+			                    if(data.status=='success'){
+			                        var img=new Image();
+			                    	img.src=data.url;
+			                    	img.onload=function(){
+			                    		$('.m-draw-bottleback').html('');
+			                    		//$('.m-draw-bottleback').css('clip','rect('+img.width*0.075+'px '+img.width*0.925+'px '+img.height+'px '+img.width*0.075+'px)');
+			                    		$('.m-draw-bottleback').attr('style','background:url("'+data.url+'");background-position:'+(0-w/375*20)+'px 0px;background-size:'+w/375*190+'px auto;');
+			                    	}
+			                        bottleBackImg.src=data.url;
+			                        uploadimg=data.url;
+			                        bottleBackContext.clearRect(0,0,bottleBackCanvas.width,bottleBackCanvas.height);
+			                    }
+			                    else if(data.status=='fail'){
+			                        alert(data.msg);
+			                    }
+			                }
+			            });
+			        } 
+			    });
+			}
+			//生成图片
+			function toSave(){
+				$('.u-tool-save div').on('click',function(){
+				//document.getElementsByClassName('u-tool-save')[0].getElementsByTagName('div')[0].addEventListener('touchstart', function(){
+					if(hasclick){
+			    		alert('已经提交，请稍等');
+			    	}
+			    	else{
+			    		hasclick=true;
+			    		setTimeout(function(){
+							hasclick=false;
+			    		}, 7000);
+			    		if($('.m-draw-text').val().length==0||$('.m-draw-text').val()=='点击此处&#13;&#10;输入内容'){
+				            alert('请输入你想说的话');
+				        }
+				        else if($('.m-draw-text').val()==parseInt($('.m-draw-text').val())){
+				    		alert('请勿输入纯数字');
+				    	}
+				        else{
+				        	$('.u-new-doing').text('语录发布中，请耐心等待…..');
+				        	textX=parseInt(getXY($('#draw-text')).X);
+				        	textY=parseInt(getXY($('#draw-text')).Y);
+				        	signX=parseInt(getXY($('.m-draw-sign')).X);
+				        	signY=parseInt(getXY($('.m-draw-sign')).Y);
+				            $('.g-new').show();
+				            $('.g-new').addClass('u-show-model');
+				            $('.u-new-doing').show();
+				            $('.m-new').hide();
+				            $('.u-new-img').attr('src','');
+				            $('.u-tool-bottleback').find('img').css({'clip':'rect(0 0.675rem 1.25rem 0)','top':'1.5rem'});
+				            $('.u-tool-back').find('img').css({'clip':'rect(0 2.075rem 1.25rem 0.825rem)','top':'1.5rem'});
+				            $(this).find('img').css({'clip':'rect(1.475rem 3.5rem 2.725rem 2.25rem)','top':'-1.5rem'});
+				            // 清空画布
+				            try{
+				                backContext.clearRect(0,0,750,809);
+				                bottleContext.clearRect(0,0,353,679);
+				                bottleBackContext.clearRect(0,0,324,381);
+				            }
+				            catch(e){
+				                alert('清空画布异常'+e);
+				            }
+				            try{
+				                backContext.drawImage(backImg,0,0,750,809,0,0,750,809);
+				            }
+				            catch(e){
+				               alert('第0处异常'+e);
+				            }
+				            try{
+				                bottleContext.drawImage(bottleImg,0,0,353,679,0,0,353,679);
+				            }
+				            catch(e){
+				                alert('第1处异常'+e);
+				            }
+				            try{
+				            	if(bottleBackImg.src.indexOf('back')<0){
+				            		bottleBackContext.drawImage(bottleBackImg,bottleBackImg.width*0.075,0,bottleBackImg.width*0.85,bottleBackImg.height,0,0,324,381);
+				            	}
+				            	else{
+									bottleBackContext.drawImage(bottleBackImg,0,0,324,381,0,0,324,381);
+				            	}
+				            }
+				            catch(e){
+				                alert('第2处异常'+e);
+				            }
+				            try{
+				                backContext.drawImage(bottleCanvas,201,72,353,679);
+				            }
+				            catch(e){
+				                alert('第3处异常'+e);
+				            }
+				            content=$('.m-draw-text').val().replace(/\r/ig, '').replace(/\n/g,'').replace(/#/g,'');
+				            lineArr=getText().replace(/\r/ig, ";").replace(/\n/g,';').replace(/#/g,';').split(';');
+				            bottleBackContext.font = 'bold '+(fontSize*35*w/375)+'px 微软雅黑';
+				            bottleBackContext.fillStyle=$('.m-draw-text').css('color');
+				            var lineHeight;
+				            if(fontSize==0.9){
+				            	lineHeight=50;
+				            }
+				            else if(fontSize==0.7){
+				            	lineHeight=40;
+				            }
+				            else if(fontSize==1.1){
+				            	lineHeight=65;
+				            }
+				            if(hasShadow){
+				            	bottleBackContext.shadowColor ='rgba(164, 162, 162, 1)';
+				            	bottleBackContext.shadowOffsetX =4;
+				            	bottleBackContext.shadowOffsetY =1;
+				            	bottleBackContext.shadowBlur=2;
+				            }
+				            bottleBackContext.textAlign =textAlign;
+				            switch(textAlign){
+				            	case 'left':
+									for(var i=0;i<lineArr.length;i++){
+						                bottleBackContext.fillText(lineArr[i], 22+textX*2, lineHeight+i*45+textY*2);
+						            }
+				            	break;
+				            	case 'center':
+									for(var i=0;i<lineArr.length;i++){
+						                bottleBackContext.fillText(lineArr[i], 162+textX*2, lineHeight+i*45+textY*2);
+						            }
+				            	break;
+				            	case 'right':
+									for(var i=0;i<lineArr.length;i++){
+						                bottleBackContext.fillText(lineArr[i], 302+textX*2, lineHeight+i*45+textY*2);
+						            }
+				            	break;
+				            }
+				            bottleBackContext.textAlign ='left';
+				            bottleBackContext.shadowColor ='rgba(164, 162, 162, 0)';
+				            bottleBackContext.font=(22*w/375)+'px 微软雅黑';
+				            bottleBackContext.fillStyle=$('.m-draw-nickname').css('color');
+				            bottleBackContext.fillText($('.m-draw-nickname').text(), 22+signX*2, 290+signY*2);
+				            bottleBackContext.fillText($('.m-draw-sign span').text()+$('.m-draw-address').text(), 22+signX*2, 320+signY*2);
+				            bottleBackContext.fillText($('.m-draw-address').val(), 100+signX*2, 320+signY*2);
+				            bottleBackContext.fillText($('.m-draw-date').text(), 22+signX*2, 350+signY*2);
+				            try{
+				                backContext.drawImage(bottleBackCanvas,218,355,323,381);
+				            }
+				            catch(e){
+				                alert('第4处异常'+e);
+				            }
+				            try{
+				            	baseImage=backCanvas.toDataURL('image/png');
+				            }
+				            catch(e){
+				                alert('第5处异常'+e);
+				            }
+				            subAjax();
+				        }
+			    	}
+				});
+			}
+
+			function getText(){
+				$('#hideSpan').text('');
+				$('#hideSpan').css({'font-size':$('#draw-text').css('font-size'),'font-weight':'bold'});
+				var textW=parseInt($('#draw-text').css('width').substring(0,$('#draw-text').css('width').indexOf('px')))-10;
+				var hasEnter,line=0;
+			    for(var i=0;i<$('#draw-text').val().length;i++){
+			    	hasEnter=false;
+			     	$('#hideSpan').text($('#hideSpan').text()+$('#draw-text').val().charAt(i));
+			     	var hideSpanW=parseInt($('#hideSpan').css('width').substring(0,$('#hideSpan').css('width').indexOf('px')).replace('#',''));
+			     	if(!hasEnter&&hideSpanW>=(textW*(line+1))){
+			     		$('#hideSpan').text($('#hideSpan').text()+'#');
+			     		line++;
+			     	}
+			    }
+			    return $('#hideSpan').text();
+			    //console.log('内容=='+$('#hideSpan').text());
+			}
+
+			//提交ajax
+			function subAjax(){
+			    var interval=setInterval(function(){
+			        if(baseImage.length>1000){
+			            clearInterval(interval);
+			            $.ajax({
+			                type:'post',
+			                url:h5url+'/bottle?uid='+localStorage.getItem('uid'),
+			                data:{uploadimg:uploadimg,image:baseImage,chooseimg:chooseimg,backimg:back,color:color,content:content},
+			                datatype:'json',
+			                success:function(data){
+			                    if(data.status=='success'){
+			                        $('.u-new-img').attr('src',data.imgurl);
+			                        $('.u-new-doing').text('图片已生成，请耐心等待……');
+			                        document.getElementsByClassName('u-new-img')[0].onload=function(){
+			                            $('.u-new-doing').hide();
+			                            $('.m-new').show();
+			                        }
+			                        shareData.link=h5url+'?shareid='+data.shareid;
+			                    }
+			                    else if(data.status=='fail'){
+			                        alert(data.msg);
+			                        $('.g-new').hide();
+			                        $('.g-new').removeClass('u-show-model');
+			                    }
+			                }
+			            });
+			        }
+			    }, 20);
+			}
+
+			function getXY(obj){
+				var XY={X:0,Y:0};
+				if(obj.css('transform')!='none'){
+					var transform=obj.css('transform');
+					//console.log(transform);
+            		XY.X=transform.split(',')[4];	
+            		XY.Y=transform.split(',')[5].substring(0,transform.split(',')[5].indexOf(')'));
+				}
+				return XY;
+			}
+			//微信配置
+            wx.config({
+                debug: false,
+                appId: "{$jssdk['appId']}",
+                timestamp: "{$jssdk['timestamp']}",
+                nonceStr: "{$jssdk['nonceStr']}",
+                signature: "{$jssdk['signature']}",
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                ]
+            });
+            var shareData = {
+                title: "我有一瓶酒，有话对你说。",
+                desc: "每个人都写自己的故事，每个人都是自己的导演。",
+                link: "{$Think.config.h5}/lapp/bottle",
+                imgUrl: "http://static.ijovo.com/lapp/express_bottle/img/share.jpg",
+            };
+            // 微信接口调用
+            wx.ready(function() {
+                wx.onMenuShareTimeline(shareData);
+                wx.onMenuShareAppMessage(shareData);
+                wx.onMenuShareQQ(shareData);
+                wx.onMenuShareWeibo(shareData);
+            });
+	    </script>
+	</body>
+</html>

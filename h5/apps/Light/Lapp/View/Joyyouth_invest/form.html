@@ -1,0 +1,260 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="Keywords" content="江小白" />
+    <meta name="Description" content="江小白JOYOUTH青春版招商说明" />
+    <meta http-equiv="Cache-Control" content="max-age=0" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>江小白JOYYOUTH青春版招商说明</title>
+    <link href='{$Think.config.static}/lapp/joyyouth_invest/css/main.css?v=201605071710' rel='stylesheet' type='text/css'>
+    <link href='{$Think.config.static}/lib/theme/modern/common/ui/Button.css' rel='stylesheet' type='text/css'>
+    <link href='{$Think.config.static}/lib/theme/modern/common/ui/Dialog.css' rel='stylesheet' type='text/css'>
+    <link href='{$Think.config.static}/lib/theme/modern/common/ui/Input.css' rel='stylesheet' type='text/css'>
+    <link href='{$Think.config.static}/lib/theme/modern/common/ui/Radio.css' rel='stylesheet' type='text/css'>
+    <link href='{$Think.config.static}/lib/theme/modern/common/ui/Tips.css' rel='stylesheet' type='text/css'>
+    <link type='text/css' href='{$Think.config.static}/lapp/joyyouth_invest/css/modifyUI.css?v=201604261810' rel='stylesheet'>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+</head>
+
+<body>
+    <h3 class="u-title">在线申请</h3>
+    <form class="g-form" novalidate="novalidate" id="validateForm">
+        <div class="m-agentArea">
+            <h6>申请经销区域</h6>
+            <div class="m-province">
+                <select id="cmbProvince" name="info[area1]" value="{$list['area1']['content']}"></select>
+            </div>
+            <div class="m-city">
+                <select id="cmbCity" name="info[area2]" value="{$list['area2']['content']}"></select>
+            </div>
+            <div class="m-area">
+                <select id="cmbArea" name="info[area3]" value="{$list['area3']['content']}"></select>
+            </div>
+        </div>
+        <div class="clearfix mt15" id="radioType">
+            <label>企业类型<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="radio" id="radioType01" name="info[radio1]" value="1" required <eq name="list.radio1.content" value="1">checked</eq>>
+                <label class="ui_radio" for="radioType01"></label>
+                <label class="mr20 ml5" for="radioType01">个体户</label>&nbsp;&nbsp;&nbsp;
+                <input type="radio" id="radioType02" name="info[radio1]" value="2" required <eq name="list.radio1.content" value="2">checked</eq>>
+                <label class="ui_radio" for="radioType02"></label>
+                <label for="radioType02" class="ml5">有限公司</label>&nbsp;&nbsp;&nbsp;
+                <input type="radio" id="radioType03" name="info[radio1]" value="3" required <eq name="list.radio1.content" value="3">checked</eq>>
+                <label class="ui_radio" for="radioType03"></label>
+                <label for="radioType03" class="ml5">其他</label>
+            </div>
+        </div>
+        <div class="clearfix mt15" id="radioQualification">
+            <label>纳税人资格<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="radio" id="radioQualification01" name="info[radio2]" value="1" required <eq name="list.radio2.content" value="1">checked</eq>>
+                <label class="ui_radio" for="radioQualification01"></label>
+                <label class="mr20 ml5" for="radioQualification01">一般纳税人</label>&nbsp;&nbsp;&nbsp; 
+                <input type="radio" id="radioQualification02" name="info[radio2]" value="2" required <eq name="list.radio2.content" value="2">checked</eq>>
+                <label class="ui_radio" for="radioQualification02"></label>
+                <label for="radioQualification02" class="ml5">小规模纳税人</label>
+            </div>
+        </div>
+        <div class="clearfix mt15" id="m-companyName">
+            <label>企业名称<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="text" minlength="2" class="ui_input u-input" id="companyName" name="info[cname]" value="{$list['cname']['content']}" placeholder="请填写企业名称">
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>申请人姓名<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="text" class="ui_input u-input" id="applyName" name="info[name]" value="{$list['name']['content']}" placeholder="请填写申请人姓名" required>
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>手机<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="tel" class="ui_input u-input" id="mobile" name="info[phone]" value="{$list['phone']['content']}" placeholder="请填写手机号码" required>
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>邮箱<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="email" class="ui_input u-input" id="email" name="info[email]" value="{$list['email']['content']}" placeholder="请填写邮箱">
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>QQ<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="number" class="ui_input u-input" id="QQ" name="info[qq]" value="{$list['qq']['content']}" placeholder="请填写QQ" minlength="5" maxlength="13">
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>新浪微博<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="text" class="ui_input u-input" id="sinaWeibo" name="info[sina]" value="{$list['sina']['content']}" placeholder="请填写新浪微博">
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>微信号<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="text" class="ui_input u-input" id="WeChat" name="info[wechat]" value="{$list['wechat']['content']}" placeholder="请填写微信号">
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>办公室地址<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="text" class="ui_input u-input" id="address" name="info[address]" value="{$list['address']['content']}" placeholder="请填写办公室地址">
+            </div>
+        </div>
+        <div class="clearfix mt15">
+            <label>办公室电话<span class="red abs"></span></label>
+            <div class="cell">
+                <input type="text" class="ui_input u-input" id="tel" name="info[tel]" value="{$list['tel']['content']}" placeholder="请填写办公室电话">
+            </div>
+        </div>
+        <div class="m-saleNetwork">
+            <h6>销售网络</h6>
+            <div>
+                <span class="u-left">直接餐饮终端</span>
+                <input type="number" class="ui_input" id="num1" name="info[num1]" value="{$list['num1']['content']}"/>
+                <span>家</span>
+                <br/>
+                <span class="u-left">中小型零售终端</span>
+                <input type="number" class="ui_input" id="num2" name="info[num2]" value="{$list['num2']['content']}"/>
+                <span>家</span>
+                <br/>
+                <span class="u-left">直供商超系统</span>
+                <input type="number" class="ui_input" id="num3" name="info[num3]" value="{$list['num3']['content']}"/>
+                <span>家</span>
+                <br/>
+                <span class="u-left">门店</span>
+                <input type="number" class="ui_input" id="num4" name="info[num4]" value="{$list['num4']['content']}"/>
+                <span>家</span>
+                <br/>
+                <span class="u-left">长期稳定合作的城区二批商户</span>
+                <input type="number" class="ui_input" id="num5" name="info[num5]" value="{$list['num5']['content']}"/>
+                <span>家</span>
+            </div>
+            <p class="u-companyNameNotice">（注：如没有请填“0”）</p>
+        </div>
+        <div class="m-warehouseDistribution">
+            <h6>仓库配送</h6>
+            <div>
+                <span class="u-left">仓库</span>
+                <input type="number" class="ui_input" id="num6" name="info[num6]" value="{$list['num6']['content']}"/>
+                <span>间</span>
+                <br/>
+                <span class="u-left">总面积</span>
+                <input type="number" class="ui_input" id="num7" name="info[num7]" value="{$list['num7']['content']}"/>
+                <span>㎡</span>
+                <br/>
+                <span class="u-left">小面包</span>
+                <input type="number" class="ui_input" id="num8" name="info[num8]" value="{$list['num8']['content']}"/>
+                <span>辆</span>
+                <br/>
+                <span class="u-left">小货车</span>
+                <input type="number" class="ui_input" id="num9" name="info[num9]" value="{$list['num9']['content']}"/>
+                <span>辆</span>
+                <br/>
+                <span class="u-left">大货车</span>
+                <input type="number" class="ui_input" id="num10" name="info[num10]" value="{$list['num10']['content']}"/>
+                <span>辆</span>
+            </div>
+            <p class="u-companyNameNotice">（注：如没有请填“0”）</p>
+        </div>
+        <div class="m-staffing">
+            <h6>人员配置</h6>
+            <div>
+                <span class="u-left">管理干部</span>
+                <input type="number" class="ui_input" id="num11" name="info[num11]" value="{$list['num11']['content']}"/>
+                <span>人</span>
+                <br/>
+                <span class="u-left">一线销售人员</span>
+                <input type="number" class="ui_input" id="num12" name="info[num12]" value="{$list['num12']['content']}"/>
+                <span>人</span>
+                <br/>
+                <span class="u-left">财务后勤及配送人员</span>
+                <input type="number" class="ui_input" id="num13" name="info[num13]" value="{$list['num13']['content']}"/>
+                <span>人</span>
+            </div>
+            <p class="u-companyNameNotice">（注：如没有请填“0”）</p>
+        </div>
+        <div class="m-button">
+            <div class="m-submit">
+                <input type="submit" id="validateSubmit" style="display: none;">
+                <label for="validateSubmit" id="submitLabel" class="ui_button ui_button_primary">提交</label>
+            </div>
+            <a class="u-return">返回</a>
+        </div>
+        <img class="bottle-border" src="{$Think.config.static}/lapp/joyyouth_invest/img/bottle-border.png">
+    </form>
+    <div class="m-success" id="success">
+        <p class="u-info" id="info">提交成功</p>
+        <div class="m-skip" id="skip">
+            <a class="u-homePage">返回首页</a>
+            <a class="u-currentPage" id="currentPage">停留在当前页</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="{$Think.config.static}/lib/jsaddress/jsaddress.js"></script>
+    <script type="text/javascript" src="{$Think.config.static}/lapp/joyyouth_invest/js/main.js?v=201605071723"></script>
+    <script type="text/javascript" src="{$Think.config.static}/lib/sea/sea-2.3.0.min.js"></script>
+    <script type="text/javascript">
+        // 自适应
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                    docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+                };
+                if (!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+
+        //微信配置
+        wx.config({
+            debug: false,
+            appId: "{$jssdk['appId']}",
+            timestamp: "{$jssdk['timestamp']}",
+            nonceStr: "{$jssdk['nonceStr']}",
+            signature: "{$jssdk['signature']}",
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+            ]
+        });
+        /**微信分享文案修改*/
+        var shareData = {
+            title: "江小白新品诚招经销，有情怀，能挣钱。",
+            desc: "江小白新品诚招经销，有情怀，能挣钱。",
+            link: "{$Think.config.h5}/lapp/joyyouth_invest",
+            imgUrl: "http:{$Think.config.static}/lapp/joyyouth_invest/img/share.jpg",
+        };
+        // 微信接口调用
+        wx.ready(function() {
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
+
+        var province = "{$list['area1']['content']}",
+            city = "{$list['area2']['content']}",
+            area="{$list['area3']['content']}";
+        addressInit('cmbProvince', 'cmbCity', 'cmbArea', province.length > 0? province : '重庆', city.length > 0 ? city : '市辖区', area.length > 0 ? area : '九龙坡区');
+
+    </script>
+</body>
+</html>

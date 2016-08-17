@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment</title>
+    <style>
+        .item{
+            border: 1px solid red;
+            width: 303px;
+            margin: 10px;
+        }
+        .div1{
+            border: 1px solid;
+            width: 300px;
+            height: 150px;
+        }
+        .div2{
+            margin-left:100px;
+            margin-top: 25px;
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            border: 1px solid blue;
+        }
+        .div3{
+            border: 1px solid blue;
+            width: 300px;
+            height: 25px;
+            margin-top: 125px;
+            margin-right:0px; 
+        }
+        .div4{
+            width: 150px;
+            height: 25px;
+            position: absolute;
+            text-align: center;
+        }
+        .reply{
+            width: 150px;
+            height: 25px;
+            position: absolute;
+            margin-left:150px;
+            text-align: center;
+        }
+        .div5{
+            border: 1px solid;
+            width: 300px;
+            height: 50px;
+            margin-top: 0px;
+            margin-right:0px;
+        }
+        .logout{
+            top: 0px;
+            right:50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <form action="addComment?uid=wx_888" class="form" id="form" method="post">
+        <textarea rows="5" cols="50" name='comment' placeholder="评论"></textarea>
+        <input type='submit' value='发布'>
+    </form>
+        <div class="logout"><php>echo $_SESSION['userinfo']['username'];</php><input type="button" name="regout" value="退出"></div>
+        <div class='box'>
+            <volist name='commentlist' id='comment' key='k'>
+                <form class="form{$k}" id="form{$k}" method="post">
+                <input type='hidden' name='comment_id' value='{$comment.id}'>
+                <input type='hidden' name='uid' value='wx_123'>
+                    <div class="item" data-index="{$k}">
+                        <div class="div1" id='{$comment.id}'>
+                            <div class="div2">
+                                <h2>{$comment.uid}:</h2>
+                                <p>{$comment.content}</p>
+                            </div>
+                            <div class="div3">
+                                <div class="div4">
+                                <a>时间：{$comment.created}</a>
+                                </div>
+                                <div class='reply'>
+                                <a href="javascript:;" class="reply-btn" reply="{$comment.id}">回复</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='textreply' data-index1="{$k}">
+                            <textarea id="area{$k}" rows="2" cols="42" name='info[reply{$k}]' placeholder="回复内容"></textarea>
+                            <div class='{$k}'>
+                                <input id="submit{$k}" type="submit" value="提交回复"/>
+                            </div>
+                        </div>
+                        <volist name='replylist' id='reply' key='k1'>
+                            <if condition="$reply.comment_id eq $comment['id']">
+                                <div class="div5" data-replyid="{$reply.id}" data-index2="{$k1}">
+                                    <span data-uid="{$reply.uid}">{$reply.uid}:<span>{$reply.content}</span></span>
+                                    <a href="javascript:" id='reply{$k}'>回复ta</a>
+                                    <input type='hidden' value='{$reply.id}' name='reply_id{$k1}'>
+                                    <button data-index="{$reply.id}">删除</button>
+                                </div>
+                                </else>
+                            </if>
+                        </volist>
+                        <textarea name="content" style="display: none"></textarea>
+                    </div>
+                </form>
+            </volist>
+        </div>
+    <script type="text/javascript" src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+    // function sendcomment()
+    // {
+    //     document.form.action="sendComment";
+    // }
+    $('button').click(function(){
+        var uid='wx_123';
+        var index=$(this).parent().parent().data('index');
+        var value=$(this).parent().find('input').val();
+        console.log(value);
+        // document.getElementById('form'+index).action="delReply";
+        $('#form'+index).submit(function(){
+            $.ajax({
+                type:'post',
+                url:'http://h5.ijovo.loc/lapp/comment/delReply',
+                datatype:'json',
+                data: {"reply_id":value,"uid":uid},
+                success:function(info){
+                    if(info.status=='success'){
+                        alert('提交成功'); 
+                    }else{
+                        alert('提交失败');
+                        alert(info.msg);
+                    }
+                }
+            });
+        });
+    })
+
+    $('input').click(function(){
+        var index=$(this).parent().parent().data('index1');
+        console.log(index);
+        document.getElementById('form'+index).action="sendReply";
+        // var input = document.getElementById('form'+newindex);
+    })
+
+    $('a').click(function(){
+        var newindex=$(this).parent().parent().data('index');
+        console.log(newindex);
+        document.getElementById('area'+newindex).focus();
+        var input = document.getElementById('area'+newindex); 
+        var uid=$(this).prev('span').data('uid');
+        console.log(uid);
+        input.value = "回复@"+uid+":";
+    })
+    
+    $('.logout').click(function(){
+        $.ajax({
+                type:'post',
+                url:'http://h5.ijovo.loc/lapp/comment/logout',
+                datatype:'json',
+                data: '',
+                success:function(info){
+                    if(info.status=='success'){
+                        alert('提交成功'); 
+                        window.location.href="http://h5.ijovo.loc/lapp/comment/login";
+                    }else{
+                        alert('提交失败');
+                        alert(info.msg);
+                    }
+                }
+        });
+    })
+        // var form=$('.item');
+        // $('.box').delegate('.reply-btn','click',function(event){
+        //     var parent = $(this).closest('.item');
+        //     console.log(parent.html());
+        //     form.find(':hidden[name=comment_id]').val($(this).attr('reply'));
+        //     var textarea = parent.append(form);
+        //     console.log(textarea);
+            
+        // })
+        // $('.box').delegate('.item','click',function(event){
+        //     $(this).has('form').length && event.stopPropagation();
+        // })
+
+ 
+
+
+
+ 
+        // var form = $('.cmt-item:last');
+        // //插入回复表单
+        // $('.cmt-box').delegate('.reply-btn','click',function(event){
+        //     var parent = $(this).closest('.cmt-item');
+        //     //写入对应回复ID
+        //     form.find(':hidden[name=review_id]').val($(this).attr('reply'));
+        //     var textarea = parent.append(form).find('textarea');
+        //     //对回复回复的处理
+        //     if($(this).attr('at-user') == 'true'){
+        //         var username = $(this).parent().find('.username').text();
+        //         textarea.text('回复 @' + username + ' : ');
+        //     }else{
+        //         textarea.text('');
+        //     }
+        //     moveEnd(textarea.get(0));
+        //     event.stopPropagation();
+        // })
+        // $('.cmt-box').delegate('.cmt-item','click',function(event){
+        //     $(this).has('form').length && event.stopPropagation();
+        // })
+        // //点击评论框以外的地方，重置评论表单
+        // $(document).click(function(){
+        //     if(form.find(':hidden[name=review_id]').val() != 0){
+        //         $('.more-comment').after($('.cmt-box').find('form'));
+        //         form.find(':hidden[name=review_id]').val(0);
+        //         form.find('textarea').text('');
+        //     }
+        // })
+    </script>
+</body>
+</html>

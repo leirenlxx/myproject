@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="{$Think.config.static}/lib/reset/normalize.css" rel="stylesheet" type="text/css" >
+    <link href="{$Think.config.static}/lib/reset/default.css" rel="stylesheet" type="text/css" >
+    <link href="{$Think.config.static}/lib/pxloader/pxloader.css" rel="stylesheet" type="text/css" >
+    <link href='{$Think.config.static}/lib/swiper/swiper.min.css' rel='stylesheet' type='text/css'>
+    <link href='{$Think.config.static}/lapp/express_bottle/css/main.css?v=201607221720' rel='stylesheet' type='text/css'>
+    <script src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script>
+        //公共变量
+        var w= document.documentElement.clientWidth|| document.body.clientWidth,
+            h= document.documentElement.clientHeight|| document.body.clientHeight,
+            h5URL='http://h5.ijovo.com/lapp/bottle/',
+            sys={
+                uid:"{$uid}",
+                nickname:"{$nickname}",
+                openid:"{$openid}"
+            };
+        if(!localStorage.getItem("uid")||localStorage.getItem("uid").length==0){
+            localStorage.setItem("uid",sys.uid);
+        }
+        if(!localStorage.getItem("nickname")||localStorage.getItem("nickname").length==0){
+            localStorage.setItem("nickname",sys.nickname);
+        }
+        if(!localStorage.getItem("openid")||localStorage.getItem("openid").length==0){
+            localStorage.setItem("openid",sys.openid);
+        }
+    </script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <title>表达瓶</title>
+</head>
+
+<body>
+    <div class="g-fst-page" id="fst-page">
+        <img class="m-swiper-bg" src="{$Think.config.static}/lapp/express_bottle/img/home-bg.png">
+        <!-- banner图片轮播 -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="u-sign-1"></div>
+                    <div class="u-bottle-1"></div>
+                    <!-- <img src="{$Think.config.static}/lapp/express_bottle/img/swiper-1.png"/> -->
+                </div>
+                <div class="swiper-slide">
+                    <div class="u-sign-2"></div>
+                    <div class="u-bottle-2"></div>
+                    <!-- <img src="{$Think.config.static}/lapp/express_bottle/img/swiper-2.png"/> -->
+                </div>
+                <div class="swiper-slide">   
+                    <div class="u-sign-3"></div>
+                    <div class="u-bottle-3"></div>
+                </div>
+                <div class="swiper-slide"> 
+                    <div class="u-sign-4"></div>
+                    <div class="u-bottle-4"></div>
+                </div>
+                <div class="swiper-slide">        
+                    <div class="u-sign-5"></div>
+                    <div class="u-bottle-5"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="u-sign-6"></div>
+                    <div class="u-bottle-6"></div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="g-shareImg">
+            <img class="u-shareImg">
+            <p class="u-shareImg-loading">好友照片加载中……</p>
+        </div>
+        <div class="m-button">
+            <a class="u-edit-button" id="to_edit" href="http://h5.ijovo.com/lapp/bottle/draw">写一句，你最想说的话</a>
+            <span class="u-rule-button" id="show_rule">活动规则</span>
+            <a class="u-find-button" id="show_list" href="http://h5.ijovo.com/lapp/bottle/bolist">找点灵感</a>
+        </div>
+    </div>
+    <div class="g-rule" id="rule">
+        <div class="m-rule-wraper">
+            <p class="u-rule-title">活动规则</p>
+            <p class="m-rule-special">
+                特别说明：<br>参加本活动即视为同意授权给活动主办方免费使用网络名称、头像、位置、时间、语录等信息，活动主办方有权用于商业用途。
+            </p>
+            <p class="m-rule-line">
+                <span>1</span><br><br><br><span>2</span><br><br><br><span>3</span><br><br><br><br><span>4</span><br><br><br><span>5</span><br>
+            </p>
+            <p class="m-rule-text">
+                在活动页面写下你想说的话，即可生成你的专属酒瓶。<br><br>我们会评选最用心、最感人、最流行、最逗比的语言作为我们的获奖用户。<br><br>如果你想说的话通过筛选，即有机会登上江小白表达瓶，并获得专属定制江小白1箱（100ML×12瓶）。<br><br>我们将定期于江小白微信公众号，公布优秀语录。<br><br>请参与活动的用户注意江小白公众号公布信息。<br><br>
+            </p>
+            <p class="u-rule-close">点此关闭</p>
+        </div>
+    </div>
+    <script src="{$Think.config.static}/lib/swiper/swiper.min.js"></script>
+    <script>
+        //图片轮播单独拉出来，和resizeEvt会失效
+        var mySwiper = new Swiper ('.swiper-container', {
+            loop: true,
+            //当设置为false时，用户操作之后（swipes,arrow以及pagination 点击）autoplay不会被禁掉，用户操作之后每次都会重新启动autoplay。
+            autoplayDisableOnInteraction: false,
+            // 如果需要分页器
+            autoplay: 4000,
+            pagination: '.swiper-pagination',
+        });
+    </script>
+    <script src="{$Think.config.static}/lapp/express_bottle/js/main.js?v=201607221720"></script>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) {return};
+                docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+            };
+            if (!doc.addEventListener) {return};
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+            if($('#to_edit').attr('href').indexOf('uid')<0){
+                $('#to_edit').attr('href',$('#to_edit').attr('href')+'?uid='+localStorage.getItem("uid"));
+            }
+            if($('#show_list').attr('href').indexOf('uid')<0){
+                $('#show_list').attr('href',$('#show_list').attr('href')+'?uid='+localStorage.getItem("uid"));
+            }
+            //微信配置
+            wx.config({
+                debug: false,
+                appId: "{$jssdk['appId']}",
+                timestamp: "{$jssdk['timestamp']}",
+                nonceStr: "{$jssdk['nonceStr']}",
+                signature: "{$jssdk['signature']}",
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                ]
+            });
+            var shareData = {
+                    title: "我有一瓶酒，有话对你说。",
+                    desc: "每个人都写自己的故事，每个人都是自己的导演。",
+                    link: "{$Think.config.h5}/lapp/bottle",
+                    imgUrl: "http://static.ijovo.com/lapp/express_bottle/img/share.jpg",
+                };
+
+                // 微信接口调用
+                wx.ready(function() {
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    wx.onMenuShareWeibo(shareData);
+                });
+    </script>
+    <div style="display: none;"><script src="http://s13.cnzz.com/z_stat.php?id=1253181563&web_id=1253181563"></script></div>
+</body>
+</html>

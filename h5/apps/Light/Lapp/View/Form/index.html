@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <style>
+    .show{
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <form action="mode2Form" method="post" id="form">
+        <volist name="forms" id="data" key="kk">
+            <if condition="is_array($data['options']) eq true">
+                <div class="{$data.name} sub" id="{$data.name}">
+                <label>{$kk}、{$data.label}</label></br>
+                <switch name="data.type">
+                <case value="select">
+                    <select id="{$data.name}" name="info[{$data.name}]">
+                        <option value="0">请选择</option>
+                        <volist name="data['options']" id="options" key="k2">
+                        <option value="{$k2}">{$options}</option>
+                        </volist>
+                    </select>
+                </case>
+                <case value="checkbox">
+                    <volist name="data['options']" id="options" key="k3">
+                        <input type="{$data.type}" id="{$data.name}{$k3}" name="info[{$data.name}][]" value="{$k3}">
+                        <label for="{$data.name}{$k3}">{$options}</label>
+                    </volist>
+                    <input type="checkbox" id="checkbox14" name="info[checkbox1][]"  value="D、汽车">
+                    <label for="checkbox14">D、汽车</label>
+                </case>
+                <default/>
+                    <volist name="data['options']" id="options" key="k1">
+                        <input type="{$data.type}" id="{$data.name}{$k1}" name="info[{$data.name}]" value="{$k1}" data-skip="{$data['skipto'][$k1-1]}" data-index="{$kk}">
+                        <label for="{$data.name}{$k1}">{$options}</label>
+                    </volist>
+                </switch>
+                </div>
+            <else/>
+                <div class="{$data.name} sub" id="{$data.name}">
+                    <label for="{$data.name}">{$kk}、{$data.label}</label>
+                    <input type="{$data.type}" name="info[{$data.name}]" id="{$data.name}" placeholder="{$data.placeholder}" data-skip="{$data['skipto'][$k1-1]}" data-index="{$kk}"  <eq name="data.require" value="1">required</eq>>
+                </div>
+            </if>
+        </volist>
+        <input type="submit" value="提交">
+    </form>
+    <script type="text/javascript" src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script>
+        $('input').click(function() {
+            $(this).parent().find('input').each(function(){
+                var subIndex = $(this).parent().index();
+                var skip = $(this).data('skip'),// 遍历sub里所有skip值
+                    skipNum = skip-subIndex-2;//跳过的sub个数
+                $(".sub").eq(skip-1).hide();
+                for (var i = 0; i < skipNum; i++) {
+                    $(".sub").eq(subIndex + i+1).hide();
+                }
+            console.log(skip);
+            });
+                $(".sub").eq($(this).data('skip')-1).show();
+        });
+
+        $('#form').submit(function(){
+            $.ajax({
+                type:'post',
+                url:'http://h5.ijovo.loc/lapp/form/mode2Form',
+                datatype:'json',
+                data: $(this).serialize(),
+                success:function(info){
+                    if(info.status=='success'){
+                        alert('提交成功'); 
+                    }else{
+                        alert('提交失败');
+                    }
+                    alert(info.msg);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

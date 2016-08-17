@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form class='form' method="post">
+        <div><input type="text" name="username" placeholder="用户名" required/></div>
+        <div><input type="password" name="password" placeholder="密码" required/></div>
+        <input type="text" name="verify"  placeholder="验证码" required/>
+        </br>
+        <img  alt="验证码" src="{:U('Lapp/Comment/verify',array())}" title="点击刷新"></br>
+        <button class='login'>登录</button>
+        <input type="button" value="注册" onclick="jump()" required>
+        <input type='button' value="找回密码" onclick="getback()" required>
+    </form>
+    <script type="text/javascript" src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script>
+        $('.login').click(function(){
+            $('.form').submit(function(){
+                $.ajax({
+                    type:'post',
+                    url:'http://h5.ijovo.loc/lapp/comment/signIn',
+                    datatype:'json',
+                    data: $(this).serialize(),
+                    success:function(info){
+                        if(info.status=='success'){
+                            // alert('登录成功');
+                            window.location.href="http://h5.ijovo.loc/lapp/comment/";
+                        }else{
+                            alert(info.msg);
+                        }
+                    }
+                });
+            });
+        })
+
+        //注册跳转
+        function jump(){
+            window.location.href="http://h5.ijovo.loc/lapp/comment/reg";
+        }
+
+        //找回跳转
+        function getback(){
+            window.location.href="http://h5.ijovo.loc/lapp/comment/getback";
+        }
+
+        var img = $('.form').find('img')  
+        var verifyimg = img.attr("src"); 
+        img.click(function(){  
+            if( verifyimg.indexOf('?')>0){  
+                $(this).attr("src", verifyimg+'&random='+Math.random()); 
+            }else{  
+                $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());  
+            }  
+        }); 
+    </script>
+</body>
+</html>

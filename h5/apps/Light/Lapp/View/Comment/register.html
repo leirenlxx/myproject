@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+    <form action="signUp" class='form' method="post">
+        <div><input type="text" name="username" placeholder="用户名"></div>
+        <div><input type="password" name="password" placeholder="密码"></div>
+        <div><input type="password" name="repassword" placeholder="确认密码"></div>
+        <div><input type="text" name="email" placeholder="邮箱"></div>
+        <div><input type="text" name="mobile" placeholder="手机号"></div>
+        <div><input type="text" name="verify"  placeholder="验证码" required/></div>
+        <img  alt="验证码" src="{:U('Lapp/User/verify',array())}" title="点击刷新"></br>
+        <input type="submit" name="注册" value='注册'>
+        <!-- <button class="reg">注册</button> -->
+    </form>
+    <script type="text/javascript" src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script>
+        // $('.reg').click(function(){
+        //     $('.form').submit(function(){
+        //         $.ajax({
+        //             type:'post',
+        //             url:'http://h5.ijovo.loc/lapp/comment/signUp',
+        //             datatype:'json',
+        //             data: $(this).serialize(),
+        //             success:function(info){
+        //                 if(info.status=='success'){
+        //                     alert(info.msg); 
+        //                     window.location.href="http://h5.ijovo.loc/lapp/comment/login";
+        //                 }else{
+        //                     alert(info.msg);
+        //                 }
+        //             }
+        //         });
+        //     });
+        // })
+
+        var img = $('.form').find('img')  
+        var verifyimg = img.attr("src"); 
+        img.click(function(){  
+            if( verifyimg.indexOf('?')>0){  
+                $(this).attr("src", verifyimg+'&random='+Math.random()); 
+            }else{  
+                $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());  
+            }  
+        }); 
+    </script>
+</body>
+</html>

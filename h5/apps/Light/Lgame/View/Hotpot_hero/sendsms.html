@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>发送获奖信息</title>
+</head>
+<body>
+    <div class="start">
+        <button>开始</button>
+    </div>
+    <div class="log-box" id="log-box">
+        <div class="log-phone" style="border:1px solid;width:500px;height:400px"></div>
+        <div class="log-sms" style="border:1px solid;width:500px;height:400px"></div>
+    </div>
+    <script src="http://static.ijovo.loc/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script>
+    var id = 2;
+    var phone = '';
+    var baseUrl = 'http://h5.ijovo.loc/lgame/hotpot_hero/';
+
+    $(".start").click(function(){
+        console.log("开始");
+        ajax(1);
+    });
+
+    function ajax (type) {
+        var url;
+        if (type) {
+            //电话
+            url = baseUrl + 'phone?id=' + id;
+        } else {
+            //短信
+            url = baseUrl + 'send?phone=' + phone;
+        }
+        
+        $.ajax({
+            url: url,
+            data: '',
+            type: 'get',
+            dataType: 'json',
+            success: function(re){
+                if(re.status=='success'){
+                    if (type) {
+                        //数据请求成功
+                        phone = re.data;
+                        ajax(0);
+                        $(".log-phone").append("数据请求成功：id=" + id + " - phone=" + phone +  "<br>");
+                        id++;
+                    } else {
+                        //短信发送成功
+                        console.log(re.data);
+                        ajax(1);
+                        $(".log-sms").append("短信发送成功：id=" + id + " - phone=" + phone +  "<br>");
+                    }
+                } else {
+                    if(type){
+                        phone = re.data;
+                        if (phone=='') {
+                                console.log('数据停止，当前ID：'+(id-1));
+                            } else {
+                                //数据请求失败
+                                $(".log-phone").append("数据请求失败：id=" + id + " - phone=" + phone +  "<br>");
+                        }
+                    }else{
+                        //短信发送失败
+                        $(".log-sms").append("短信发送失败：id=" + id + " - phone=" + phone +  "<br>");
+                    }
+                }
+            }
+        })
+    }
+    </script>
+</body>
+</html>

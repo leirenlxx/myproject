@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <title>找点灵感</title>
+    <style>
+        *{
+            margin: 0 auto;
+            padding: 0;
+            font-family: "微软雅黑","宋体";
+            tap-highlight-color: rgba(0,0,0,0);
+            -moz-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            focus-ring-color: rgba(0,0,0,0);
+            -moz-focus-ring-color: rgba(0,0,0,0);
+            -webkit-focus-ring-color: rgba(0,0,0,0);
+            -webkit-appearance: none;
+            -webkit-text-size-adjust: none;
+        }
+        html {
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            background:#eaeaea;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top:0;
+        }
+        li{
+            list-style: none;
+        }
+        .g-quotation-list{
+            width: 18.25rem;
+            margin:0.25rem;
+            background: #fff;
+            position: absolute;
+            top:0;
+        }
+        .m-content{
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 0 0.2rem #c9c9c9;
+        }
+        .m-loading{
+            font-size: 0.7rem;
+            text-align: center;
+            height: 2rem;
+            line-height: 2rem;
+            color: #dedede;
+        }
+    /*语录列表*/
+        .m-li{
+            overflow: hidden;
+            padding: 1rem 0;
+            border-bottom: 1px solid #d8d8d8;
+        }
+        .m-head{
+            width: 16%;
+            height: 3.15rem;
+            float: left;
+            position: relative;
+            left: 0.8rem;
+        }
+        .m-text{
+            width: 74%;
+            padding-right: 6%;
+            float: right;
+            line-height: 1rem;
+        }
+        .u-head{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin:auto;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+        }
+        .u-name{
+            width: 50%;
+            display: inline-block;
+            font-size: 0.7rem;
+            color: #0096dc;
+            float: left;
+        }
+        .u-date{
+            color: #9fa0a0;
+            width: 50%;
+            display: inline-block;
+            font-size: 0.55rem;
+            text-align: right;
+            float: right;
+        }
+        .u-text{
+            display: block;
+            width: 100%;
+            text-align: left;
+            font-size: 0.6rem;
+            color: #898989;
+            clear: both;
+            word-break:break-all;
+            height: 2rem;
+            line-height: 1rem;
+            padding-top: 0.2rem;
+            border:0;
+            background: none;
+            resize: none;
+        }
+        .m-arrow,.m-arrow-wraper{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .m-arrow{
+            height: 3.15rem;
+            width: 100%;
+            background: #eaeaea;
+        }
+        .m-arrow-wraper{ 
+            top: 0;
+            margin: auto;
+            height: 2rem;
+            width: 2rem;
+        }
+        .u-arrow-left,.u-arrow-right{
+            border-bottom: 0.15rem solid #0097dd; 
+            border-left: 0.15rem solid transparent; 
+            border-right: 0.15rem solid transparent; 
+            height: 0; 
+            width: 1rem; 
+            position: relative;
+        }
+        .u-arrow-left{
+            transform:rotate(55deg); 
+            -ms-transform:rotate(55deg);
+            left: -.25rem;
+            top:.9rem;
+        }
+        .u-arrow-right{
+           transform:rotate(-55deg); 
+            -ms-transform:rotate(-55deg);
+            left: .4rem;
+            top:.74rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="g-quotation-list" id="list">
+        <div class="m-content">
+            <ul class="m-list" id="quotation-list">
+            </ul>
+            <div class="m-loading">正在加载……</div>
+        </div>
+    </div>
+    <div class="m-arrow">
+        <div class="m-arrow-wraper">
+            <div class="u-arrow-left"></div>
+            <div class="u-arrow-right"></div>
+        </div>
+    </div>
+    <div style="display: none;">
+        <img src="{$abc}" alt="">
+    </div>
+    <script src="{$Think.config.static}/lib/jquery/jquery-1.9.1.min.js"></script>
+    <script>
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) {return};
+            docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+        };
+        if (!doc.addEventListener) {return};
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+    var h5URL='{$Think.config.h5}/lapp/bottle/',
+        w= document.documentElement.clientWidth|| document.body.clientWidth,
+        h= document.documentElement.clientHeight|| document.body.clientHeight,
+        curPage=1,liNum=0,getAll=false,pageSize=20;
+    $('.g-quotation-list').height(h-$('.m-arrow').height()-0.5*20*w/375);
+
+    $(function(){
+        loadNextPage(curPage);
+        document.getElementsByClassName('m-content')[0].onscroll=function(){
+            var scrollTop=document.getElementsByClassName('m-content')[0].scrollTop;
+            if(scrollTop>=($('#quotation-list').height()-$('.m-content').height()-30)&&Math.ceil(liNum/pageSize)==curPage&&!getAll){
+                curPage+=1;
+                console.log('加载第'+curPage+'页');
+                loadNextPage(curPage);
+            }
+        }
+    });
+    
+    //调接口显示列表
+    function loadNextPage(page){
+        $.ajax({
+            type:'get',
+            url:h5URL+'bottleList?page='+page+'&openid='+localStorage.getItem('openid'),
+            datatype:'json',
+            success:function(data){
+                if(data.status=='success'){
+                    var date,text;
+                    if(data.data.length>0){
+                        for(var i=0;i<data.data.length;i++){
+                            date=data.data[i].created.substr(0,4)+'年'+data.data[i].created.substr(5,2)+'月'+data.data[i].created.substr(8,2)+'日';
+                            text=data.data[i].content.replace(/\r/ig,'').replace(/\n/g,'');
+                            var head=data.data[i].headimgurl;
+                            try{
+                                if((head!=null&&head.length==0)||head==null){
+                                    head='http://static.ijovo.com/lapp/express_bottle/img/default-head.png';
+                                }
+                            }
+                            catch(e){
+                                console.log('获取头像异常');
+                            }
+                            $('#quotation-list').append('<li class="m-li"><div class="m-head"><img class="u-head" src="'+head+'"></div><div class="m-text"><p class="u-name">'+data.data[i].nickname+'</p><p class="u-date">'+date+'</p><textarea class="u-text" readonly="readonly">'+text+'</textarea></div></li>');
+                        }
+                        liNum+=data.data.length;
+                        if(data.data.length<pageSize){
+                            load=true;
+                            $('.m-loading').text('已加载完毕');
+                            getAll=true;
+                        }
+                    }
+                    else{
+                        load=true;
+                        $('.m-loading').text('已加载完毕');
+                        getAll=true;
+                    }
+                }
+            }
+        });
+    }
+    
+    //微信配置
+    wx.config({
+        debug: false,
+        appId: "{$jssdk['appId']}",
+        timestamp: "{$jssdk['timestamp']}",
+        nonceStr: "{$jssdk['nonceStr']}",
+        signature: "{$jssdk['signature']}",
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+        ]
+    });
+
+    var shareData = {
+            title: "我有一瓶酒，有话对你说。",
+            desc: "每个人都写自己的故事，每个人都是自己的导演。",
+            link: "{$Think.config.h5}/lapp/bottle",
+            imgUrl: "http://static.ijovo.com/lapp/express_bottle/img/share.jpg",
+        };
+
+        // 微信接口调用
+        wx.ready(function() {
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
+    </script>
+</body>
+</html>
